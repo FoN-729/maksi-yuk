@@ -24,6 +24,7 @@
       text-align: center;
       width: 100%;
       max-width: 420px;
+      position: relative;
     }
 
     h1 {
@@ -56,10 +57,6 @@
       background-color: #d81b60;
     }
 
-    #noBtn {
-      position: absolute;
-    }
-
     #response,
     #inputSection {
       margin-top: 20px;
@@ -77,10 +74,8 @@
       box-sizing: border-box;
     }
 
-    @media screen and (min-width: 600px) {
-      button {
-        width: auto;
-      }
+    .hide {
+      display: none;
     }
   </style>
 </head>
@@ -88,19 +83,25 @@
 
   <div class="card">
     <h1>Rimaa 😊</h1>
-    <p>besok maksi bareng yukk</strong><br>
+    <p> <strong>makan siang bareng yukk?</strong><br>
       Aku traktir deh 🍛
     </p>
-    <button onclick="respond(true)">Mauuu 😄</button>
-    <button id="noBtn" onmouseover="kejarTombol()">Nggak dulu 🙈</button>
 
+    <!-- Tombol ajakan -->
+    <div id="buttonGroup">
+      <button onclick="respond(true)">Mauuu 😄</button>
+      <button id="noBtn" onmouseover="kejarTombol()">Nggak dulu 🙈</button>
+    </div>
+
+    <!-- Respons setelah klik -->
     <div id="response"></div>
 
-    <div id="inputSection" style="display:none;">
+    <!-- Input makanan -->
+    <div id="inputSection" class="hide">
       <p>Asyik! Kamu pengin makan apa? 🍱</p>
       <input type="text" id="foodInput" placeholder="Tulis di sini ya..." />
       <br /><br />
-      <button onclick="kirimKeWhatsApp()">Kirim 🚀</button>
+      <button onclick="kirimKeWhatsApp()">Kirim🚀</button>
     </div>
   </div>
 
@@ -108,9 +109,12 @@
     function respond(yes) {
       const res = document.getElementById("response");
       const inputSection = document.getElementById("inputSection");
+      const buttons = document.getElementById("buttonGroup");
+
       if (yes) {
-        res.innerText = "Yay!☀️";
-        inputSection.style.display = "block";
+        res.innerText = "Yay!!!☀️";
+        inputSection.classList.remove("hide");
+        buttons.classList.add("hide"); // sembunyikan tombol setelah klik
       }
     }
 
@@ -121,20 +125,3 @@
       btn.style.position = "absolute";
       btn.style.top = 50 + y + "px";
       btn.style.left = 50 + x + "px";
-    }
-
-    function kirimKeWhatsApp() {
-      const makanan = document.getElementById("foodInput").value.trim();
-      if (makanan === "") {
-        alert("Isi dulu dong, kamu pengin makan apa? 😅");
-        return;
-      }
-
-      const pesan = `Aku mau makan: ${encodeURIComponent(makanan)} 😋`;
-      const nomor = "6281225484148"; // Ganti dengan nomormu tanpa +
-      window.open(`https://wa.me/${nomor}?text=${pesan}`, "_blank");
-    }
-  </script>
-
-</body>
-</html>
