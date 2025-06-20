@@ -1,94 +1,106 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Ajak Makan Siang</title>
   <style>
     body {
-      font-family: 'Comic Sans MS', cursive, sans-serif;
-      background-color: #fff0f5;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background-color: #fef6f9;
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
+      min-height: 100vh;
       margin: 0;
+      padding: 20px;
     }
 
     .card {
       background-color: #ffffff;
-      padding: 30px;
-      border-radius: 20px;
-      box-shadow: 0 0 20px rgba(255, 105, 180, 0.3);
+      padding: 25px;
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(255, 105, 180, 0.2);
       text-align: center;
-      max-width: 400px;
-      position: relative;
+      width: 100%;
+      max-width: 420px;
     }
 
     h1 {
-      color: #ff69b4;
+      color: #e91e63;
+      font-size: 1.7em;
+      margin-bottom: 10px;
     }
 
     p {
-      font-size: 18px;
-      color: #555;
-      margin-bottom: 30px;
+      font-size: 1.05em;
+      color: #444;
+      margin-bottom: 24px;
     }
 
     button {
-      background-color: #ff69b4;
+      background-color: #e91e63;
       color: white;
       border: none;
-      padding: 12px 25px;
+      padding: 12px 20px;
       border-radius: 25px;
-      font-size: 16px;
+      font-size: 1em;
       cursor: pointer;
-      margin: 5px;
-      transition: 0.2s ease-in-out;
-      position: relative;
+      margin: 8px 0;
+      width: 100%;
+      max-width: 250px;
+      transition: background-color 0.2s;
     }
 
     button:hover {
-      background-color: #ff1493;
+      background-color: #d81b60;
     }
 
     #noBtn {
       position: absolute;
-      top: 70%;
-      left: 30%;
-      transform: translate(-50%, -50%);
     }
 
-    #response, #inputSection {
+    #response,
+    #inputSection {
       margin-top: 20px;
-      font-weight: bold;
+      font-weight: 500;
       color: #4CAF50;
     }
 
     input[type="text"] {
       padding: 10px;
-      border-radius: 10px;
+      border-radius: 8px;
       border: 1px solid #ccc;
       margin-top: 10px;
-      width: 80%;
+      width: 100%;
+      font-size: 1em;
+      box-sizing: border-box;
+    }
+
+    @media screen and (min-width: 600px) {
+      button {
+        width: auto;
+      }
     }
   </style>
 </head>
 <body>
 
   <div class="card">
-    <h1>Haloo rimaa 😳</h1>
-    <p>Besok maksi bareng yukk...  
-    🤭</p>
-    <button onclick="respond(true)">Mauuu! 😍</button>
-    <button id="noBtn" onmouseover="kejarTombol()">Nggak ah 🙈</button>
+    <h1>Rimaa 😊</h1>
+    <p>besok maksi bareng yukk</strong><br>
+      Aku traktir deh 🍛
+    </p>
+    <button onclick="respond(true)">Mauuu 😄</button>
+    <button id="noBtn" onmouseover="kejarTombol()">Nggak dulu 🙈</button>
 
     <div id="response"></div>
 
     <div id="inputSection" style="display:none;">
-      <p>Yeay! Kamu mau makan apa? 🍱</p>
-      <input type="text" id="foodInput" placeholder="Tulis di sini ya...">
-      <br><br>
-      <button onclick="kirimKeWhatsApp()">Kirim 🚀</button>
+      <p>Asyik! Kamu pengin makan apa? 🍱</p>
+      <input type="text" id="foodInput" placeholder="Tulis di sini ya..." />
+      <br /><br />
+      <button onclick="kirimKeWhatsApp()">Kirim ke Waku 🚀</button>
     </div>
   </div>
 
@@ -97,7 +109,7 @@
       const res = document.getElementById("response");
       const inputSection = document.getElementById("inputSection");
       if (yes) {
-        res.innerText = "YESS!! 🥳 ntar kutraktir!";
+        res.innerText = "Yay!☀️";
         inputSection.style.display = "block";
       }
     }
@@ -106,6 +118,7 @@
       const btn = document.getElementById("noBtn");
       const x = Math.floor(Math.random() * 200);
       const y = Math.floor(Math.random() * 150);
+      btn.style.position = "absolute";
       btn.style.top = 50 + y + "px";
       btn.style.left = 50 + x + "px";
     }
@@ -113,12 +126,12 @@
     function kirimKeWhatsApp() {
       const makanan = document.getElementById("foodInput").value.trim();
       if (makanan === "") {
-        alert("Eh isi dulu dong, kamu mau makan apa? 😅");
+        alert("Isi dulu dong, kamu pengin makan apa? 😅");
         return;
       }
 
-      const pesan = `mau makan : ${encodeURIComponent(makanan)} ini yuk😋🍽️`;
-      const nomor = "6281225484148"; // GANTI dengan nomor WhatsApp kamu tanpa + atau spasi
+      const pesan = `Aku mau makan: ${encodeURIComponent(makanan)} 😋`;
+      const nomor = "6281225484148"; // Ganti dengan nomormu tanpa +
       window.open(`https://wa.me/${nomor}?text=${pesan}`, "_blank");
     }
   </script>
