@@ -24,7 +24,6 @@
       text-align: center;
       width: 100%;
       max-width: 420px;
-      position: relative;
     }
 
     h1 {
@@ -47,7 +46,7 @@
       border-radius: 25px;
       font-size: 1em;
       cursor: pointer;
-      margin: 8px 0;
+      margin: 8px 6px;
       width: 100%;
       max-width: 250px;
       transition: background-color 0.2s;
@@ -55,6 +54,12 @@
 
     button:hover {
       background-color: #d81b60;
+    }
+
+    .disabled {
+      background-color: #ccc;
+      cursor: not-allowed;
+      pointer-events: none;
     }
 
     #response,
@@ -74,34 +79,23 @@
       box-sizing: border-box;
     }
 
-    #buttonGroup {
-      position: relative;
-    }
-
-    #noBtn {
-      position: absolute;
-      top: 0;
-      left: 50%;
-      transform: translateX(-50%);
-    }
-
     .hide {
-      display: none !important;
+      display: none;
     }
   </style>
 </head>
 <body>
 
   <div class="card">
-    <h1>Rimaa 😊</h1>
+    <h1>RIMAA😊</h1>
     <p> <strong>makan siang bareng yukk?</strong><br>
       Aku traktir deh 🍛
     </p>
 
     <!-- Tombol ajakan -->
     <div id="buttonGroup">
-      <button id="yesBtn" onclick="respond(true)">Mauuu 😄</button>
-      <button id="noBtn" onmouseover="kejarTombol()">Nggak dulu 🙈</button>
+      <button onclick="respond(true)">Mauuu 😄</button>
+      <button class="disabled">Nggak dulu 🙈</button>
     </div>
 
     <!-- Respons setelah klik -->
@@ -120,21 +114,13 @@
     function respond(yes) {
       const res = document.getElementById("response");
       const inputSection = document.getElementById("inputSection");
-      const buttonGroup = document.getElementById("buttonGroup");
+      const buttons = document.getElementById("buttonGroup");
 
       if (yes) {
-        res.innerText = "Yay! Kamu bikin hariku lebih cerah! ☀️";
+        res.innerText = "Yay!!!☀️";
         inputSection.classList.remove("hide");
-        buttonGroup.classList.add("hide"); // tombol hilang
+        buttons.classList.add("hide");
       }
-    }
-
-    function kejarTombol() {
-      const btn = document.getElementById("noBtn");
-      const x = Math.random() * 150;
-      const y = Math.random() * 100;
-      btn.style.top = y + "px";
-      btn.style.left = x + "px";
     }
 
     function kirimKeWhatsApp() {
@@ -144,8 +130,8 @@
         return;
       }
 
-      const pesan = `Hai Waku! Aku mau makan: ${encodeURIComponent(makanan)} 😋`;
-      const nomor = "6281225484148"; // Ganti dengan nomor kamu
+      const pesan = `Aku mau makan: ${encodeURIComponent(makanan)} 😋`;
+      const nomor = "6281225484148"; // Ganti dengan nomormu tanpa +
       window.open(`https://wa.me/${nomor}?text=${pesan}`, "_blank");
     }
   </script>
